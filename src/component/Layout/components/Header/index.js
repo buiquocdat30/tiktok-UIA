@@ -4,6 +4,7 @@ import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-s
 import React, { useEffect, useState } from 'react';
 import Tippy from '@tippyjs/react/headless'; // different import path!
 
+import Button from '~/component/Button';
 import { wrapper as ProperWrapper } from '~/component/proper';
 import styles from './Header.module.scss';
 import images from '~/assets/images';
@@ -55,7 +56,10 @@ function Header() {
             </button>
           </div>
         </Tippy>
-        <div className={cx('action')}></div>
+        <div className={cx('action')}>
+          <Button text>Update</Button>
+          <Button primary>Log in</Button>
+        </div>
       </div>
     </header>
   );
