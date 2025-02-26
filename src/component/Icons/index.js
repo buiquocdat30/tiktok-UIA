@@ -15,7 +15,7 @@ export const UploadIcon = ({ width = '2rem', height = '2rem', className }) => (
   </svg>
 );
 
-export const MessageIcon = ({ width = '1.8rem', height = '1.8rem', className }) => (
+export const MessageIcon = ({ width = '1.7rem', height = '1.7rem', className }) => (
   <svg
     className={className}
     width={width}
@@ -32,7 +32,7 @@ export const MessageIcon = ({ width = '1.8rem', height = '1.8rem', className }) 
   </svg>
 );
 
-export const InboxIcon = ({ width = '2rem', height = '2rem', className }) => (
+export const InboxIcon = ({ width = '2.05rem', height = '2.05rem', className }) => (
   <svg
     className={className}
     width={width}
@@ -49,7 +49,7 @@ export const InboxIcon = ({ width = '2rem', height = '2rem', className }) => (
   </svg>
 );
 
-export const SearchIcon = ({ width = '2rem', height = '2rem', className }) => (
+export const SearchIcon = ({ width = '1.8rem', height = '1.8rem', className }) => (
   <svg
     className={className}
     width={width}
