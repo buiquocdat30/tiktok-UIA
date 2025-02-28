@@ -9,7 +9,7 @@ function App() {
         <Routes>
           {publicRoutes.map((route, index) => {
             //mặc định Layout = DefaultLayout
-
+            const Page = route.component;
             let Layout = DefaultLayout;
             //nếu layout trong route là null thì trả về Fragment còn ko trả về layout trong route
 
@@ -19,7 +19,6 @@ function App() {
               Layout = Fragment;
             }
 
-            const Page = route.component;
             return (
               <Route
                 key={index}
