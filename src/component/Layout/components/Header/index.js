@@ -23,6 +23,7 @@ import Menu from '~/component/proper/Menu';
 import { MessageIcon, UploadIcon, InboxIcon } from '~/component/Icons';
 import Image from '~/component/Image';
 import Search from '../Search';
+import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -94,10 +95,14 @@ function Header() {
     },
   ];
 
+  const navigate = useNavigate();
+  const handleLogoClick = () => {
+    navigate('/');
+  };
   return (
     <header className={cx('wrapper')}>
       <div className={cx('inner')}>
-        <div className={cx('logo')}>
+        <div className={cx('logo')} onClick={handleLogoClick}>
           <img src={images.logo} alt="tiktok" />
         </div>
         {/* poper  */}

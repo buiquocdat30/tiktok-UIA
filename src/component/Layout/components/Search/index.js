@@ -1,13 +1,16 @@
-import classNames from 'classnames/bind';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import React, { useEffect, useState, useRef } from 'react';
+import { useDebounce } from '~/hook';
+import axios from 'axios';
 
 import HeadlessTippy from '@tippyjs/react/headless'; // different import path!
 import 'tippy.js/dist/tippy.css';
 import { wrapper as ProperWrapper } from '~/component/proper';
 import AccountItem from '~/component/AccountItem';
 import { SearchIcon } from '~/component/Icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
+
+import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
 
 const cx = classNames.bind(styles);
@@ -16,6 +19,8 @@ function Search() {
   const [searchResult, setSearchResult] = useState([]);
   const [showResult, setShowResult] = useState(true);
   const [loading, setLoading] = useState(false);
+
+  const debounced = useDebounce(searchValue, 800);
 
   const inputRef = useRef();
 
@@ -29,7 +34,13 @@ function Search() {
     setLoading(true);
 
     //encodeURIComponent(searchValue) mã hóa ký tự sang định dạng ký tự hợp lệ trên URL
-    fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
+    axios
+      .get(`https://tiktok.fullstack.edu.vn/api/users/search`, {
+        params: {
+          q: debounced,
+          type: 'less',
+        },
+      })
       .then((res) => res.json())
       .then((res) => {
         setSearchResult(res.data);
@@ -38,7 +49,8 @@ function Search() {
       .catch(() => {
         setLoading(false);
       });
-  }, [searchValue]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debounced]);
 
   const handleClear = () => {
     // set input về rỗng
