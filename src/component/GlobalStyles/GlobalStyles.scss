@@ -1,6 +1,8 @@
 @import 'normalize.css';
 
 :root {
+  //font
+  --font-family: 'ProximaNova', san-serif;
   --black: #000;
   --white: #fff;
   --text-color: #333;
@@ -21,7 +23,7 @@ html {
 }
 
 body {
-  font-family: 'ProximaNova', san-serif;
+  font-family: var(--font-family);
   font-size: 1.6rem;
   line-height: 1.5;
   text-rendering: optimizeSpeed;
@@ -42,19 +44,19 @@ a[href] {
 //Font embeded
 
 @font-face {
-  font-family: ProximaNova;
+  font-family: var(--font-family);
   src: url('/assets/fonts/Proxima-Nova-Regular.woff2');
   font-weight: 400;
 }
 
 @font-face {
-  font-family: ProximaNova;
+  font-family: var(--font-family);
   src: url('/assets/fonts/ProximaNova-Semibold.woff2');
   font-weight: 600;
 }
 
 @font-face {
-  font-family: ProximaNova;
+  font-family: var(--font-family);
   src: url('/assets/fonts/Proxima-Nova-Bold.woff');
   font-weight: 700;
 }

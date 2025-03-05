@@ -1,3 +1,5 @@
+import routesConfig from '~/config/routes';
+
 //Layouts
 import { HeaderOnly } from '~/component/Layout/';
 
@@ -9,12 +11,12 @@ import Search from '~/pages/Search';
 
 //ko cần đăng nhập vẫn xem được
 const publicRoutes = [
-  { path: '/', component: Home },
-  { path: '/following', component: Following },
+  { path: routesConfig.home, component: Home },
+  { path: routesConfig.following, component: Following },
   //bỏ @do trùng bên kia
-  { path: '/:nickname', component: Profile },
-  { path: '/update', component: Update, layout: HeaderOnly },
-  { path: '/search', component: Search, layout: null },
+  { path: routesConfig.profile, component: Profile },
+  { path: routesConfig.update, component: Update, layout: HeaderOnly },
+  { path: routesConfig.search, component: Search, layout: null },
 ];
 
 //phải đăng nhập mới xem được

@@ -1,4 +1,5 @@
 import classNames from 'classnames/bind';
+import styles from './Header.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faArrowRightFromBracket,
@@ -11,19 +12,16 @@ import {
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
-
 import Tippy from '@tippyjs/react';
-
 import 'tippy.js/dist/tippy.css';
-
 import Button from '~/component/Button';
-import styles from './Header.module.scss';
 import images from '~/assets/images';
 import Menu from '~/component/proper/Menu';
 import { MessageIcon, UploadIcon, InboxIcon } from '~/component/Icons';
 import Image from '~/component/Image';
 import Search from '../Search';
 import { useNavigate } from 'react-router-dom';
+import routesConfig from '~/config/routes';
 
 const cx = classNames.bind(styles);
 
@@ -95,9 +93,10 @@ function Header() {
     },
   ];
 
+  //điều hướng giữa các trang trong ứng dụng
   const navigate = useNavigate();
   const handleLogoClick = () => {
-    navigate('/');
+    navigate(routesConfig.home);
   };
   return (
     <header className={cx('wrapper')}>

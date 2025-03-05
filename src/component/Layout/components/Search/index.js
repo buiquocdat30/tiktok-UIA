@@ -54,7 +54,6 @@ function Search() {
   const handleHideResult = () => {
     setShowResult(false);
   };
-
   return (
     <HeadlessTippy
       interactive
@@ -96,7 +95,7 @@ function Search() {
             <FontAwesomeIcon icon={faSpinner} />
           </button>
         )}
-        <button className={cx('search-btn')}>
+        <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
           <SearchIcon />
         </button>
       </div>
