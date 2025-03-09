@@ -21,7 +21,7 @@ import { MessageIcon, UploadIcon, InboxIcon } from '~/component/Icons';
 import Image from '~/component/Image';
 import Search from '../Search';
 import { useNavigate } from 'react-router-dom';
-import routesConfig from '~/config/routes';
+import config from '~/config';
 
 const cx = classNames.bind(styles);
 
@@ -96,7 +96,7 @@ function Header() {
   //điều hướng giữa các trang trong ứng dụng
   const navigate = useNavigate();
   const handleLogoClick = () => {
-    navigate(routesConfig.home);
+    navigate(config.routes.home);
   };
   return (
     <header className={cx('wrapper')}>
