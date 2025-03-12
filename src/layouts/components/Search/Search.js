@@ -11,15 +11,16 @@ import { useDebounce } from '~/hook';
 import { wrapper as ProperWrapper } from '~/component/proper';
 import AccountItem from '~/component/AccountItem';
 import { SearchIcon } from '~/component/Icons/Icons';
+import { f } from 'react-router/dist/development/fog-of-war-CCAcUMgB';
 
 const cx = classNames.bind(styles);
 function Search() {
   const [searchValue, setSearchValue] = useState('');
   const [searchResult, setSearchResult] = useState([]);
-  const [showResult, setShowResult] = useState(true);
+  const [showResult, setShowResult] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const debounced = useDebounce(searchValue, 800);
+  const debouncedValue = useDebounce(searchValue, 800);
 
   const inputRef = useRef();
 
@@ -32,7 +33,7 @@ function Search() {
 
     const fetchApi = async () => {
       setLoading(true);
-      const result = await searchServices.search(debounced);
+      const result = await searchServices.search(debouncedValue);
       setSearchResult(result);
 
       setLoading(false);
@@ -41,7 +42,7 @@ function Search() {
     fetchApi();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [debounced]);
+  }, [debouncedValue]);
 
   const handleClear = () => {
     // set input về rỗng

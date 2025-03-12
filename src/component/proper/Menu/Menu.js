@@ -35,6 +35,26 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn 
     });
   };
 
+  const handleBack = () => {
+    //set history bằng phần tử trước đó 1 cấp, nghĩa là bỏ đi 1 phần tử cuối cùng bằng cách Lấy các phần tử từ chỉ mục 0 đến chỉ mục cuối cùng - 1 (gần cuối)
+    setHistory((prev) => prev.slice(0, prev.length - 1));
+  };
+
+  const renderResult = (attrs) => (
+    <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
+      <ProperWrapper className={cx('menu-popper')}>
+        {history.length > 1 && <Header title={current.title} onBack={handleBack} />}
+        <div className={cx('menu-body')}> {renderItems()}</div>
+      </ProperWrapper>
+    </div>
+  );
+
+  //Reset to frist page
+  const handleResetMenu = () => {
+    //set lại về menu tầng đầu tiên
+    setHistory((prev) => prev.slice(0, 1));
+  };
+
   return (
     <Tippy
       interactive
@@ -42,26 +62,8 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn 
       delay={[0, 700]}
       offset={[12, 8]}
       placement="bottom-end"
-      render={(attrs) => (
-        <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
-          <ProperWrapper className={cx('menu-popper')}>
-            {history.length > 1 && (
-              <Header
-                title={current.title}
-                onBack={() => {
-                  //set history bằng phần tử trước đó 1 cấp, nghĩa là bỏ đi 1 phần tử cuối cùng bằng cách Lấy các phần tử từ chỉ mục 0 đến chỉ mục cuối cùng - 1 (gần cuối)
-                  setHistory((prev) => prev.slice(0, prev.length - 1));
-                }}
-              />
-            )}
-            <div className={cx('menu-body')}> {renderItems()}</div>
-          </ProperWrapper>
-        </div>
-      )}
-      onHide={() => {
-        //set lại về menu tầng đầu tiên
-        setHistory((prev) => prev.slice(0, 1));
-      }}
+      render={renderResult}
+      onHide={handleResetMenu}
     >
       {children}
     </Tippy>
