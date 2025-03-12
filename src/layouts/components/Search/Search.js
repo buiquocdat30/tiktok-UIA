@@ -11,7 +11,6 @@ import { useDebounce } from '~/hook';
 import { wrapper as ProperWrapper } from '~/component/proper';
 import AccountItem from '~/component/AccountItem';
 import { SearchIcon } from '~/component/Icons/Icons';
-import { f } from 'react-router/dist/development/fog-of-war-CCAcUMgB';
 
 const cx = classNames.bind(styles);
 function Search() {
